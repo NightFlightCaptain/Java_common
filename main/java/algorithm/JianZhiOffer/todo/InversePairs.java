@@ -1,7 +1,5 @@
 package algorithm.JianZhiOffer.todo;
 
-import java.util.Arrays;
-
 /**
  * Author: 小栗旬
  * Date: 2019/2/28 15:56
@@ -29,56 +27,47 @@ import java.util.Arrays;
  * 7
  */
 public class InversePairs {
-	int count = 0;
+	private int count = 0;
+
 	public int InversePairs(int[] array) {
-		int length = array.length;
-		int[] sortedArray = Arrays.copyOf(array, array.length);
-		Arrays.sort(sortedArray);
-		int origin_index;
-		int new_index = 0;
-		int count = 0;
-		while (new_index < length) {
-			origin_index = 0;
-			while (array[origin_index] != sortedArray[new_index]) {
-				if (array[origin_index] > sortedArray[new_index]) {
-					count++;
-				}
-				origin_index++;
-			}
-			new_index++;
-		}
-		return count % 1000000007;
+		merge(array, 0, array.length - 1);
+		return count%1000000007;
 	}
 
-	private void inversePairsCore(int[] array, int start, int end) {
+	private void merge(int[] arrsy, int start, int end) {
 		if (start >= end) {
+			return;
 		}
 		int mid = (start + end) >> 1;
-		inversePairsCore(array, start, mid);
-		inversePairsCore(array, mid + 1, end);
-		merge(array, start, mid, end);
+		merge(arrsy, start, mid);
+		merge(arrsy, mid + 1, end);
+		merge2_array(arrsy, start, mid, end);
 	}
 
-	private void merge(int[] array, int start, int mid, int end) {
+	private void merge2_array(int[] array, int start, int mid, int end) {
 		int[] tmp = new int[end - start + 1];
 		int i = start, j = mid + 1, k = 0;
-		while (i <= mid && j <= end) {
-			if (array[i] <= array[j]) {
-				tmp[k++]=array[i++];
-			}else {
-				tmp[k++] =array[j++];
-				count++;
+		while (j <= end && i <= mid) {
+			if (array[i] > array[j]) {
+				tmp[k++] = array[j++];
+				count += mid - i + 1;
+				count%=1000000007;
+			} else {
+				tmp[k++] = array[i++];
 			}
 		}
-		while (i<=mid){
+
+		while (i <= mid) {
+//			count += end - mid;
 			tmp[k++] = array[i++];
 		}
-		while (j<=end){
+		while (j <= end) {
 			tmp[k++]=array[j++];
 		}
-		for (k=0;k<tmp.length;k++){
-			array[start+k]=tmp[k];
+		for (int m = 0; m <= end - start; m++) {
+			array[m + start] = tmp[m];
 		}
+
 	}
 
 	public static void main(String[] args) {
