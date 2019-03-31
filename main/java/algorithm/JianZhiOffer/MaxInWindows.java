@@ -1,7 +1,7 @@
 package algorithm.JianZhiOffer;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * Author: 小栗旬
@@ -14,31 +14,58 @@ import java.util.Collections;
  * {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。
  */
 public class MaxInWindows {
+//	public ArrayList<Integer> maxInWindows(int[] num, int size) {
+//		ArrayList<Integer> result = new ArrayList<>(size);
+//
+//		ArrayList<Integer> integers = new ArrayList<>(size);
+//		int length = num.length;
+//		if (size == 0 || length<size){
+//			return result;
+//		}
+//		for (int i = 0; i < size ; i++) {
+//			integers.add(num[i]);
+//		}
+//		result.add(Collections.max(integers));
+//		int index = 0;
+//		for (int i = size; i < num.length; i++) {
+//			if (index == size){
+//				index=0;
+//			}
+//			integers.set(index++, num[i]);
+//			result.add(Collections.max(integers));
+//		}
+//		return result;
+//	}
+
 	public ArrayList<Integer> maxInWindows(int[] num, int size) {
 		ArrayList<Integer> result = new ArrayList<>(size);
 
-		ArrayList<Integer> integers = new ArrayList<>(size);
-		int length = num.length;
-		if (size == 0 || length<size){
+		if (size == 0 || size>num.length){
 			return result;
 		}
-		for (int i = 0; i < size ; i++) {
-			integers.add(num[i]);
-		}
-		result.add(Collections.max(integers));
-		int index = 0;
-		for (int i = size; i < num.length; i++) {
-			if (index == size){
-				index=0;
+		LinkedList<Integer> queue = new LinkedList<>();
+		for (int i = 0; i < size - 1; i++) {
+			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
+				queue.removeLast();
 			}
-			integers.set(index++, num[i]);
-			result.add(Collections.max(integers));
+			queue.add(i);
+		}
+
+		for (int i = size - 1; i < num.length; i++) {
+			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
+				queue.removeLast();
+			}
+			queue.add(i);
+			if (i - queue.getFirst() >= size) {
+				queue.removeFirst();
+			}
+			result.add(num[queue.getFirst()]);
 		}
 		return result;
 	}
 
 	public static void main(String[] args) {
-		int[] nums = {2,3,3};
+		int[] nums = {2,3,4,2,6,2,5,1};
 		MaxInWindows solution = new MaxInWindows();
 		System.out.println(solution.maxInWindows(nums, 3));
 	}
