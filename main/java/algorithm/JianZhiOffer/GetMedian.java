@@ -1,6 +1,6 @@
 package algorithm.JianZhiOffer;
 
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 /**
  * Author: 小栗旬
@@ -11,36 +11,61 @@ import java.util.LinkedList;
  * 我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。
  */
 public class GetMedian {
-	LinkedList<Integer> list = new LinkedList<>();
+//	LinkedList<Integer> list = new LinkedList<>();
+//
+//	public void Insert(Integer num) {
+//		int size = list.size();
+//		int start = 0;
+//		int end = size;
+//		int mid = 0;
+//		while (start < end) {
+//			mid = (start + end) / 2;
+//			if (list.get(mid) > num) {
+//				end = mid - 1;
+//			} else {
+//				start = mid + 1;
+//			}
+//		}
+//		list.add(mid, num);
+//	}
+//
+//	public Double getMedian() {
+//		int size = list.size();
+//		if ((size & 1) == 1) {
+//			return (double) list.get(size / 2);
+//		} else {
+//			return  (list.get(size / 2) + list.get(size / 2-1)) / ((double)2);
+//		}
+//	}
+
+	PriorityQueue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2-o1);
+	PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+	int count = 0;
 
 	public void Insert(Integer num) {
-		int size = list.size();
-		int start = 0;
-		int end = size;
-		int mid = 0;
-		while (start < end) {
-			mid = (start + end) / 2;
-			if (list.get(mid) > num) {
-				end = mid - 1;
-			} else {
-				start = mid + 1;
-			}
+		if ((count & 1) == 0) {
+			maxHeap.offer(num);
+			Integer number = maxHeap.poll();
+			minHeap.offer(number);
+		} else {
+			minHeap.offer(num);
+			Integer number = minHeap.poll();
+			maxHeap.offer(number);
 		}
-		list.add(mid, num);
+		count++;
 	}
 
 	public Double getMedian() {
-		int size = list.size();
-		if ((size & 1) == 1) {
-			return (double) list.get(size / 2);
-		} else {
-			return  (list.get(size / 2) + list.get(size / 2-1)) / ((double)2);
+		if ((count & 1) == 1) {
+			return (double)minHeap.peek();
+		}else {
+			return (minHeap.peek()+maxHeap.peek())/(2.0);
 		}
 	}
 
 	public static void main(String[] args) {
 		GetMedian solution = new GetMedian();
-		int[] ints = {5,2,3,4,1,6,7,0,8};
+		int[] ints = {5, 2, 3, 4, 1, 6, 7, 0, 8};
 		for (int a : ints) {
 			solution.Insert(a);
 			System.out.println(solution.getMedian());
