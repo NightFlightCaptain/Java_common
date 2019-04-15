@@ -19,8 +19,7 @@ public class HasPath {
 			if (matrix[i] != str[0]) {
 				continue;
 			}
-			boolean flag = hasPath(isWalked, matrix, (i) / cols, (i) % cols, rows, cols, str, 0);
-			if (flag) {
+			if( hasPath(isWalked, matrix, (i) / cols, (i) % cols, rows, cols, str, 0)){
 				return true;
 			}
 		}
@@ -28,60 +27,83 @@ public class HasPath {
 	}
 
 	private boolean hasPath(boolean[] isWalked, char[] matrix, int rowIndex, int colIndex, int rows, int cols, char[] str, int index) {
-//		if (index == str.length) {
-//			return true;
-//		}
-		if (matrix[rowIndex * cols + colIndex] != str[index]) {
+
+		if (colIndex < 0 || colIndex >= cols || rowIndex < 0 || rowIndex >= rows
+				|| isWalked[rowIndex * cols + colIndex]
+				|| matrix[rowIndex * cols + colIndex] != str[index]) {
 			return false;
 		}
-
 		isWalked[rowIndex * cols + colIndex] = true;
 		index += 1;
 		if (index == str.length) {
 			return true;
 		}
-		boolean flag1 = false, flag2 = false, flag3 = false, flag4 = false;
-		if (colIndex + 1 < cols && !isWalked[rowIndex * cols + colIndex + 1]) {
-			flag1 = hasPath(isWalked, matrix, rowIndex, colIndex + 1, rows, cols, str, index);
-			if (flag1) {
-				return true;
-			}
+		if(hasPath(isWalked, matrix, rowIndex, colIndex + 1, rows, cols, str, index)
+				|| hasPath(isWalked, matrix, rowIndex, colIndex - 1, rows, cols, str, index)
+				|| hasPath(isWalked, matrix, rowIndex + 1, colIndex, rows, cols, str, index)
+				|| hasPath(isWalked, matrix, rowIndex - 1, colIndex, rows, cols, str, index)){
+			return true;
 		}
-		if (colIndex - 1 >= 0 && !isWalked[rowIndex * cols + colIndex - 1]) {
-			flag2 = hasPath(isWalked, matrix, rowIndex, colIndex - 1, rows, cols, str, index);
-			if (flag2) {
-				return true;
-			}
-		}
-
-		if (rowIndex + 1 < rows && !isWalked[(rowIndex + 1) * cols + colIndex]) {
-			flag3 = hasPath(isWalked, matrix, rowIndex + 1, colIndex, rows, cols, str, index);
-			if (flag3) {
-				return true;
-			}
-		}
-		if (rowIndex - 1 >= 0 && !isWalked[(rowIndex - 1) * cols + colIndex]) {
-			flag4 = hasPath(isWalked, matrix, rowIndex - 1, colIndex, rows, cols, str, index);
-			if (flag4) {
-				return true;
-			}
-		}
-		return flag1 || flag2 || flag3 || flag4;
+		/* 回溯法：必须有地方重置标志位，这个地方就是要把boolen数组重置为false，不然会影响回退之后的操作 */
+		isWalked[rowIndex * cols + colIndex]=false;
+		return false;
 	}
+
+//	private boolean hasPath(boolean[] isWalked, char[] matrix, int rowIndex, int colIndex, int rows, int cols, char[] str, int index) {
+////		if (index == str.length) {
+////			return true;
+////		}
+//		if (matrix[rowIndex * cols + colIndex] != str[index]) {
+//			return false;
+//		}
+//
+//		isWalked[rowIndex * cols + colIndex] = true;
+//		index += 1;
+//		if (index == str.length) {
+//			return true;
+//		}
+//		boolean flag1 = false, flag2 = false, flag3 = false, flag4 = false;
+//		if (colIndex + 1 < cols && !isWalked[rowIndex * cols + colIndex + 1]) {
+//			flag1 = hasPath(isWalked, matrix, rowIndex, colIndex + 1, rows, cols, str, index);
+//			if (flag1) {
+//				return true;
+//			}
+//		}
+//		if (colIndex - 1 >= 0 && !isWalked[rowIndex * cols + colIndex - 1]) {
+//			flag2 = hasPath(isWalked, matrix, rowIndex, colIndex - 1, rows, cols, str, index);
+//			if (flag2) {
+//				return true;
+//			}
+//		}
+//
+//		if (rowIndex + 1 < rows && !isWalked[(rowIndex + 1) * cols + colIndex]) {
+//			flag3 = hasPath(isWalked, matrix, rowIndex + 1, colIndex, rows, cols, str, index);
+//			if (flag3) {
+//				return true;
+//			}
+//		}
+//		if (rowIndex - 1 >= 0 && !isWalked[(rowIndex - 1) * cols + colIndex]) {
+//			flag4 = hasPath(isWalked, matrix, rowIndex - 1, colIndex, rows, cols, str, index);
+//			if (flag4) {
+//				return true;
+//			}
+//		}
+//		return flag1 || flag2 || flag3 || flag4;
+//	}
 
 	public static void main(String[] args) {
 		HasPath solution = new HasPath();
-		char[] matrix = "ABCEHJIGSFCSLOPQADEEMNOEADIDEJFMVCEIFGGS".toCharArray();
+		char[] matrix = "ABCEMMESMMSMMMEMMMBM".toCharArray();
 		for (int i = 0; i < matrix.length; i++) {
 			System.out.print(matrix[i]);
-			if ((i + 1) % 8 == 0) {
+			if ((i + 1) % 4 == 0) {
 				System.out.println();
 			}
 		}
-		String[] strings = {"SLHECCEIDEJFGGFIE"};
+		String[] strings = {"ABCESEB"};
 		for (String s : strings) {
 			char[] str = s.toCharArray();
-			System.out.println(solution.hasPath(matrix, 5, 8, str));
+			System.out.println(solution.hasPath(matrix, 5, 4, str));
 		}
 //		System.out.println(solution.hasPath(matrix, 3, 4, "asfcceseeda".toCharArray()));
 	}
