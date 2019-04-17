@@ -56,17 +56,14 @@ class TreeNode {
 	TreeNode left = null;
 	TreeNode right = null;
 
+	public TreeNode(int val) {
+		this.val = val;
+	}
+
 	public static void main(String[] args) {
 		int[] numbers = {1, 2, 3, 0,0,0, 4, 5, 6, 7};
 		TreeNode node = TreeNode.getTreeNode(numbers);
 		System.out.println(node);
-
-
-	}
-
-	public TreeNode(int val) {
-		this.val = val;
-
 	}
 
 	public static TreeNode getTreeNode(int[] vals) {
