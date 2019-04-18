@@ -1,7 +1,5 @@
 package algorithm.JianZhiOffer;
 
-import java.util.LinkedList;
-
 /**
  * Author: 小栗旬
  * Date: 2019/4/17 20:32
@@ -12,26 +10,30 @@ import java.util.LinkedList;
  */
 public class ReConstructBinaryTree {
 	public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
-
+		return reConstructBinaryTree(0, pre.length - 1, 0, in.length - 1, pre, in);
 	}
 
-	private TreeNode get(int[] pre, int preStart, int preEnd, int[] in, int inStart, int inEnd) {
-		LinkedList<Integer> stack = new LinkedList<>();
-		for (int i = preStart; i < preEnd; i++) {
-			for (int j = inStart; j < preEnd; j++) {
-				if (pre[i] == in[j]) {
-					TreeNode treeNode = new TreeNode(pre[i]);
-					treeNode.left = get(pre, i+1, j, in, inStart, inEnd);
-					treeNode.right = get(pre, j + 1, preEnd, in, j+1, inEnd);
-				}
+	private TreeNode reConstructBinaryTree(int preStart, int preEnd, int inStart, int inEnd, int[] pre, int[] in) {
+		int length = pre.length;
+		if (preStart > preEnd || inStart > inEnd || length == 0) {
+			return null;
+		}
+		TreeNode treeNode = new TreeNode(pre[preStart]);
+		for (int i = inStart; i <= inEnd; i++) {
+			if (pre[preStart] == in[i]) {
+				treeNode.left = reConstructBinaryTree(preStart + 1, preStart + i - inStart, inStart, i - 1, pre, in);
+				treeNode.right = reConstructBinaryTree(preStart+1+i - inStart, preEnd, i + 1, inEnd, pre, in);
+				break;
 			}
 		}
+		return treeNode;
 	}
 
 	public static void main(String[] args) {
-//		ReConstructBinaryTree solution = new ReConstructBinaryTree();
-//		int[] pre = {1,2,4,7,3,5,6,8};
-//		int[] in ={4,7,2,1,5,3,8,6};
-//		System.out.println(solution.reConstructBinaryTree(pre, in));
+		ReConstructBinaryTree solution = new ReConstructBinaryTree();
+		int[] pre = {1, 2, 4, 7, 3, 5, 6, 8};
+		int[] in = {4, 7, 2, 1, 5, 3, 8, 6};
+		TreeNode treeNode = solution.reConstructBinaryTree(pre, in);
+		System.out.println(treeNode);
 	}
 }
