@@ -17,7 +17,7 @@ class SimpleAOPTest {
 			}
 		};
 
-		BeforeAdvice beforeAdvice = new BeforeAdvice(helloService,methodInvocation);
+		BeforeAdvice beforeAdvice = new BeforeAdvice(helloService,()->System.out.println("log task ...."));
 
 		HelloServiceImpl helloServiceProxy = (HelloServiceImpl) SimpleAOP.getProxy(helloService,beforeAdvice);
 		helloServiceProxy.sayHelloWorld();
