@@ -1,4 +1,4 @@
-package algorithm.JianZhiOffer.todo;
+package algorithm.JianZhiOffer;
 
 /**
  * Author: 小栗旬
