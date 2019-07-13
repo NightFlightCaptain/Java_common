@@ -2,6 +2,11 @@ package algorithm.JianZhiOffer;
 
 import java.util.LinkedList;
 
+/**
+ * int val：表示当前值
+ * TreeNode left 左子树
+ * TreeNode right 右子树
+ */
 public class TreeNode {
 	public int val = 0;
 	public TreeNode left = null;
