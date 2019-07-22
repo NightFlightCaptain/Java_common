@@ -22,7 +22,7 @@ public class ReConstructBinaryTree {
 		for (int i = inStart; i <= inEnd; i++) {
 			if (pre[preStart] == in[i]) {
 				treeNode.left = reConstructBinaryTree(preStart + 1, preStart + i - inStart, inStart, i - 1, pre, in);
-				treeNode.right = reConstructBinaryTree(preStart+1+i - inStart, preEnd, i + 1, inEnd, pre, in);
+				treeNode.right = reConstructBinaryTree(preStart + 1 + i - inStart, preEnd, i + 1, inEnd, pre, in);
 				break;
 			}
 		}
