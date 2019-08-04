@@ -26,10 +26,7 @@ public class Different {
 		}
 		return true;
 	}
-
-
-
-
+	//ASCII码总共有256个，前128个为常用，后128个不常用
 
 	public static void main(String[] args) {
 		Different different = new Different();
