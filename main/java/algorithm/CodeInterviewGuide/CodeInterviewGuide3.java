@@ -47,6 +47,7 @@ public class CodeInterviewGuide3 {
         int left = 0, right = n - 1;
         while (left < right) {
             if (a[left] + a[right] == k) {
+                /*
                 System.out.println(a[left] + " " + a[right]);
                 left++;
                 right--;
@@ -56,6 +57,13 @@ public class CodeInterviewGuide3 {
                 while (right>=0&&a[right] == a[right+1]) {
                     right--;
                 }
+                */
+                if (left == 1||a[left]!=a[left-1]) {
+                    System.out.println(a[left] + " " + a[right]);
+                }
+                left++;
+                right--;
+                //不要在代码中再加循环
 
             } else if (a[left] + a[right] < k) {
                 left++;
