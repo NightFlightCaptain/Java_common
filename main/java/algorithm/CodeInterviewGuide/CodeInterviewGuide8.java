@@ -3,8 +3,6 @@ package algorithm.CodeInterviewGuide;
 import java.util.Scanner;
 
 /**
- * @author: 小栗旬
- * @Date: 2019/8/11 9:33
  * <p>
  * 【未排序正数数组中累加和为给定值的最长子数组的长度】
  * <p>
@@ -20,6 +18,7 @@ import java.util.Scanner;
  * 第二行N个整数表示数组内的数
  * 输出描述:
  * 输出一个整数表示答案
+ * <p>
  * 示例1
  * 输入
  * 5 3
@@ -27,6 +26,9 @@ import java.util.Scanner;
  * <p>
  * 输出
  * 3
+ *
+ * @author: 小栗旬
+ * @Date: 2019/8/11 9:33
  */
 public class CodeInterviewGuide8 {
     public static void main(String[] args) {
@@ -52,7 +54,7 @@ public class CodeInterviewGuide8 {
                 num -= nums[left++];
             } else if (num < k) {
                 right++;
-                if (right == N){
+                if (right == N) {
                     break;
                 }
                 num += nums[right];
