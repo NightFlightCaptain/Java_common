@@ -1,4 +1,4 @@
-package algorithm.leetcode;
+package algorithm.leetcode.todo;
 
 import java.util.Arrays;
 
@@ -139,11 +139,12 @@ public class LeetCode85 {
     public static void main(String[] args) {
         LeetCode85 solution = new LeetCode85();
         char[][] a = {
-                {'1', '0', '1', '0', '0'},
-                {'1', '0', '1', '1', '1'},
-                {'1', '1', '1', '1', '1'},
-                {'1', '0', '0', '1', '0'}
-//                {'1', '1'}
+//                {'1', '0', '1', '0', '0'},
+//                {'1', '0', '1', '1', '1'},
+//                {'1', '1', '1', '1', '1'},
+//                {'1', '0', '0', '1', '0'}
+                {'0','0','0','0'},
+                {'1','1','0','0'},
         };
         System.out.println(solution.maximalRectangle2(a));
     }
