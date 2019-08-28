@@ -29,6 +29,10 @@ import java.util.Scanner;
  * 4
  */
 public class CodeInterviewGuide14 {
+    /*
+    如果条件是要小于某个值，那么我们设法取最小，然后看这个最小是否满足这个条件。
+    如果我们取最小，对于条件的数值就没有那么敏感。
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -42,6 +46,8 @@ public class CodeInterviewGuide14 {
             System.out.println(nums[0]);
             return;
         }
+
+        /* 【【可以取得每一个点往右能取得的最小值】】*/
         //以每一个点位最左点往右的最小和
         int[] help = new int[n];
         help[n - 1] = nums[n - 1];
