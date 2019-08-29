@@ -14,7 +14,7 @@ import java.util.Scanner;
  * <p>
  * 输入描述:
  * 第一行输入n和w，分别代表数组长度和窗口大小
- * 第二行输入n个整数X_iX，表示数组中的各个元素
+ * 第二行输入n个整数X_i，表示数组中的各个元素
  * <p>
  * 输出描述:
  * 输出一个长度为n-w+1的数组res，res[i]表示每一种窗口状态下的最大值
@@ -43,8 +43,8 @@ import java.util.Scanner;
  * 输出的结果为{5 5 5 4 6 7}
  */
 public class CodeInterviewGuide15 {
-    /* 剑指Offer MaxInWindows */
-    /* 核心想法就是 当我们往窗口中新增加一个数时，前面比这个数小的数都不会被用到了。 */
+    /* 剑指Offer MaxInWindows
+     核心想法就是 当我们往窗口中新增加一个数时，前面比这个数小的数都不会被用到了。 */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -57,6 +57,7 @@ public class CodeInterviewGuide15 {
 
         int[] res = new int[n - w + 1];
         int resIndex = 0;
+        //linkedlist中存放的是当前位置窗口的最大值
         LinkedList<Integer> linkedList = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             //当我们在一个数组或者集合按照条件取其中一个值时，考虑某些值是不是不会被取到
