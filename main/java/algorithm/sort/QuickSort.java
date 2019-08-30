@@ -22,8 +22,10 @@ public class QuickSort {
 		int v = array[left];
 
 		while (true){
-			while (array[++i]<v && i!=right);
-			while (array[--j]>v && j!=left);
+			while (array[++i]<v && i!=right) {
+			}
+			while (array[--j]>v && j!=left) {
+			}
 			if (i>j){
 				break;
 			}
