@@ -35,6 +35,7 @@ import java.util.Scanner;
  * @Date: 2019/8/30 13:57
  */
 public class CodeInterviewGuide21 {
+    //使用一种归并排序的思想
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
