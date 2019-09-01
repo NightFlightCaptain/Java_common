@@ -1,6 +1,5 @@
 package algorithm.CodeInterviewGuide;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -51,6 +50,11 @@ public class CodeInterviewGuide23 {
                 temp = next;
             }
         }
-        System.out.println(Arrays.toString(nums));
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int re : nums) {
+            stringBuilder.append(" ").append(re);
+        }
+        System.out.println(stringBuilder.substring(1));
     }
 }
