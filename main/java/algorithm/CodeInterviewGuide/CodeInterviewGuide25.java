@@ -46,8 +46,52 @@ public class CodeInterviewGuide25 {
             nums[i] = scanner.nextInt();
         }
 
-        getDp2(nums);
+        getDp3(nums);
     }
+
+    private static void getDp3(int[] arr) {
+        int length = arr.length;
+        int[] ends = new int[length];
+        int[] dp = new int[length];
+        int boundary = 1;
+
+        dp[0] = 1;
+        ends[0] = arr[0];
+        int maxIndex = 0;
+        int maxCount = 0;
+        for (int i = 1; i < length; i++) {
+
+            int left = 0;
+            int right = boundary - 1;
+            while (left <= right) {
+                int mid = left + ((right - left) >> 1);
+                if (ends[mid] > arr[i]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            ends[left] = arr[i];
+            dp[i] = left + 1;
+            if (left == boundary) {
+                boundary++;
+            }
+            if (dp[i] >= maxCount) {
+                maxIndex = i;
+                maxCount = dp[i];
+            }
+        }
+        int leftLength = dp[maxIndex];
+        StringBuilder res = new StringBuilder();
+        for (int i = maxIndex; i >= 0; i--) {
+            if (dp[i] == leftLength) {
+                res.insert(0, " " + arr[i]);
+                leftLength--;
+            }
+        }
+        System.out.println(res.substring(1));
+    }
+
 
     /**
      * O(n*logn)的时间复杂度
@@ -75,17 +119,17 @@ public class CodeInterviewGuide25 {
         for (int i = 1; i < length; i++) {
             int left = 0, right = rightBoundary;
             int mid;
-            while (left<=right) {
+            while (left <= right) {
                 mid = (left + right) / 2;
                 if (ends[mid] <= arr[i]) {
                     left = mid + 1;
-                }else if (ends[mid] > arr[i]){
-                    right = mid-1;
+                } else if (ends[mid] > arr[i]) {
+                    right = mid - 1;
                 }
             }
             ends[left] = arr[i];
-            dp[i]=left+1;
-            if (left>rightBoundary){
+            dp[i] = left + 1;
+            if (left > rightBoundary) {
                 rightBoundary++;
             }
 
