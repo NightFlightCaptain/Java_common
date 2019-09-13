@@ -1,7 +1,6 @@
 package algorithm.CodeInterviewGuide;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -55,12 +54,7 @@ public class CodeInterviewGuide29 {
         }
 
         /* Arrays.sort本身使用的是快速排序 */
-        Arrays.sort(nums, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0];
-            }
-        });
+        Arrays.sort(nums, (o1, o2) -> o1[0] == o2[0] ? o2[1] - o1[1] : o1[0] - o2[0]);
 
         int[] arr = new int[n];
         for (int i =0;i<n;i++){
