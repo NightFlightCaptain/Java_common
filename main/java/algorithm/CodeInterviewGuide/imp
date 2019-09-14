@@ -5,3 +5,4 @@
 25 最长递增子序列（Longes Increasing Subsequence，简写为 LIS）
 29 如何转化位LIS问题
 30 汉诺塔
+字符串：31求最长子序列（不必连续）
