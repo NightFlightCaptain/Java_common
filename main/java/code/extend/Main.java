@@ -9,11 +9,11 @@ import code.extend.example.People;
 public class Main {
 
 	public static void main(String[] args) {
-//		People people = new Student("wan");
-//		people.say();
+		People people = new People();
+		People people1 = new People();
+		People people2 = new People();
 
-		People people = null;
-		System.out.println(String.valueOf(people));
+		System.out.println((people));
 	}
 
 }

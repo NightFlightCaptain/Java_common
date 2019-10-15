@@ -13,14 +13,14 @@ public class SemaphoreDemo1 {
 	/*
 	Semaphore表示的是资源数，即最多可以让多少线程使用
 	 */
-	private static final int threadCount = 550;
+	private static final int THREAD_COUNT = 550;
 
 	public static void main(String[] args) {
 		ExecutorService threadPool = Executors.newFixedThreadPool(300);
 
 		final Semaphore semaphore = new Semaphore(3);
 
-		for (int i = 0; i < threadCount; i++) {
+		for (int i = 0; i < THREAD_COUNT; i++) {
 			final int threadNum = i;
 			threadPool.execute(() -> {
 				try {
