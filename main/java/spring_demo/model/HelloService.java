@@ -1,4 +1,4 @@
-package spring_demo;
+package spring_demo.model;
 
 /**
  * Author: 小栗旬

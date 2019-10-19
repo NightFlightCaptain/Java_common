@@ -1,6 +1,8 @@
 package spring_demo;
 
 import org.junit.Test;
+import spring_demo.model.Car;
+import spring_demo.model.Wheel;
 import spring_demo.simple.SimpleIOC;
 
 public class SimpleIOCTest {

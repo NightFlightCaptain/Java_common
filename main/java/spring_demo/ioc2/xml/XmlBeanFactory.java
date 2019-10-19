@@ -70,7 +70,6 @@ public class XmlBeanFactory implements BeanFactory {
 			bean = createBean(beanDefinition);
 			bean = initializeBean(bean, beanID);
 			beanDefinition.setBean(bean);
-
 		}
 		return bean;
 	}
