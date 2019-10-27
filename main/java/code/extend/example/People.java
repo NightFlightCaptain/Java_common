@@ -29,17 +29,17 @@ public class People {
 	}
 
 	public final void say() {
-		age = 1;
+		age ++ ;
 		System.out.println(age);
-		System.out.println("父类的方法");
+		System.out.println("父类的final方法");
 	}
 
 	static {
-		System.out.println("父类的static");
+		System.out.println("父类的static代码块");
 	}
 
 	{
-		System.out.println("父类的非static");
+		System.out.println("父类的非static代码块");
 	}
 
 	public static void sayStatic() {

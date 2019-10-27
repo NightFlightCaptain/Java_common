@@ -7,10 +7,12 @@ package code.extend.example;
 public class Student extends People {
 	People people = new People();
 
+
+	public Student() {
+		System.out.println("子类构造方法");
+	}
+
 	public Student(String name) {
-//		this.name = name;
-//		System.out.println("子类的构造方法");
-//		say();
 
 		people.protectedName = name;
 		people.name = name;
@@ -22,6 +24,14 @@ public class Student extends People {
 		people.protectedMethod();
 		super.protectedMethod();
 		super.defaultMethod();
+	}
+
+	static {
+		System.out.println("子类的static代码块");
+	}
+
+	{
+		System.out.println("子类的非static代码块");
 	}
 
 //	public void say() {

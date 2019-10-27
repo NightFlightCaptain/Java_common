@@ -26,6 +26,7 @@ public class LockTest {
 			}
 		}
 	*/
+
 	private void method(Thread thread) {
 		if (lock.tryLock()) {
 			try {
