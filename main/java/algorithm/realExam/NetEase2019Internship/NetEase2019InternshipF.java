@@ -1,4 +1,4 @@
-package algorithm.realExam;
+package algorithm.realExam.NetEase2019Internship;
 
 import java.util.Scanner;
 

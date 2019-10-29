@@ -1,4 +1,4 @@
-package algorithm.realExam;
+package algorithm.realExam.ByteDance2018Server2;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package algorithm.realExam;
+package algorithm.realExam.ByteDance2018Server4;
 
 import java.util.Scanner;
 

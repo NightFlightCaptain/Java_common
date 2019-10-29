@@ -1,4 +1,4 @@
-package algorithm.realExam;
+package algorithm.realExam.ByteDance2019Spring;
 
 import java.util.HashMap;
 import java.util.Scanner;
