@@ -1,10 +1,10 @@
 <beans>
-    <bean id = "wheel" class="spring_demo.model.Wheel">
+    <bean id = "wheel" class="springdemo.model.Wheel">
         <property name ="brand" value="Michelin"/>
         <property name="specification" value="265/60 R18"/>
     </bean>
 
-    <bean id="car" class="spring_demo.model.Car">
+    <bean id="car" class="springdemo.model.Car">
         <property name="name" value="Mercedes Bens G 500"/>
         <property name="length" value="4717mm"/>
         <property name="width" value="1855mm"/>
