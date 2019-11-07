@@ -1,7 +1,6 @@
 package algorithm.JianZhiOffer;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Author: 小栗旬
@@ -37,32 +36,63 @@ public class MaxInWindows {
 //		return result;
 //	}
 
-	public ArrayList<Integer> maxInWindows(int[] num, int size) {
-		ArrayList<Integer> result = new ArrayList<>(size);
+//	public ArrayList<Integer> maxInWindows(int[] num, int size) {
+//		ArrayList<Integer> result = new ArrayList<>(size);
+//
+//		if (size == 0 || size>num.length){
+//			return result;
+//		}
+//		LinkedList<Integer> queue = new LinkedList<>();
+//		for (int i = 0; i < size - 1; i++) {
+//			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
+//				queue.removeLast();
+//			}
+//			queue.add(i);
+//		}
+//
+//		for (int i = size - 1; i < num.length; i++) {
+//			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
+//				queue.removeLast();
+//			}
+//			queue.add(i);
+//			if (i - queue.getFirst() >= size) {
+//				queue.removeFirst();
+//			}
+//			result.add(num[queue.getFirst()]);
+//		}
+//		return result;
+//	}
 
-		if (size == 0 || size>num.length){
-			return result;
-		}
-		LinkedList<Integer> queue = new LinkedList<>();
-		for (int i = 0; i < size - 1; i++) {
-			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
-				queue.removeLast();
-			}
-			queue.add(i);
-		}
+    public ArrayList<Integer> maxInWindows(int [] num, int size)
+    {
+        int length = num.length;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int index =0;
+        for(int i =1;i<size;i++){
+            if(num[i]>num[index]){
+                index = i;
+            }
+        }
+        arrayList.add(num[index]);
+        for(int i =size;i<length;i++){
+            if(i-index <size){
+                if(num[i]>num[index]){
+                    index = i;
+                }
+            }else{
+                index ++;
+                int out = index;
+                for(int j =index+1;j<out+size;j++){
+                    if(num[j]>num[index]){
+                        index = j;
+                    }
+                }
+            }
+            arrayList.add(num[index]);
 
-		for (int i = size - 1; i < num.length; i++) {
-			while (!queue.isEmpty() && num[i] > num[queue.getLast()]) {
-				queue.removeLast();
-			}
-			queue.add(i);
-			if (i - queue.getFirst() >= size) {
-				queue.removeFirst();
-			}
-			result.add(num[queue.getFirst()]);
-		}
-		return result;
-	}
+        }
+        return arrayList;
+    }
 
 	public static void main(String[] args) {
 		int[] nums = {2,3,4,2,6,2,5,1};
