@@ -5,5 +5,4 @@ package code.extend;
  * Date: 2018/12/26 15:35
  */
 public interface DDD extends InterfaceTest {
-
 }

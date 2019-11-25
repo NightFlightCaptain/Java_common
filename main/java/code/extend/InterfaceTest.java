@@ -6,5 +6,6 @@ public interface InterfaceTest {
 	}
 
 	void normalMethod();
+	//默认是final
 	int a = 0;
 }
