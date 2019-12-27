@@ -1,8 +1,10 @@
 package algorithm.leetcode.todo;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
+ * 【最大矩形】
  * 给定一个仅包含 0 和 1 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。
  * <p>
  * 示例:
@@ -22,6 +24,51 @@ import java.util.Arrays;
  * @Date: 2019/8/27 8:21
  */
 public class LeetCode85 {
+    public int maximalRectangle(char[][] matrix) {
+        return secondNormalMethod(matrix);
+    }
+
+    /*  第二次做该题 */
+    private int secondNormalMethod(char[][] matrix) {
+        int row = matrix.length;
+        if (row == 0){
+            return 0;
+        }
+        int col = matrix[0].length;
+        int[] heights = new int[col];
+
+        int maxArea = 0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == '1') {
+                    heights[j]++;
+                } else {
+                    heights[j] = 0;
+                }
+            }
+
+            Stack<Integer> stack = new Stack<>();
+            stack.push(-1);
+            for (int j = 0; j < col; j++) {
+                while (stack.peek() != -1 && heights[j] < heights[stack.peek()]) {
+                    int h = heights[stack.pop()];
+                    int w = j - stack.peek() - 1;
+                    maxArea = Math.max(maxArea, h * w);
+                }
+                stack.push(j);
+            }
+
+            while (stack.peek() != -1) {
+                int h = heights[stack.pop()];
+                int w = col - stack.peek() - 1;
+                maxArea = Math.max(maxArea, h * w);
+            }
+        }
+        return maxArea;
+    }
+
+    /* 第一次做该题 */
+
     /**
      * 时间复杂度O(m*n*n) 空间复杂度O(n)
      * 判断每一个点向左延申最多能延申多少。然后从上往下以每一个点为右上角作为矩形求最大矩形
@@ -29,7 +76,7 @@ public class LeetCode85 {
      * @param matrix
      * @return
      */
-    public int maximalRectangle(char[][] matrix) {
+    private int normalMethod(char[][] matrix) {
         int height = matrix.length;
         if (height <= 0) {
             return 0;
@@ -115,7 +162,7 @@ public class LeetCode85 {
 
             //求右边比当前柱矮的最近的柱的坐标
             boundary = width;
-            for (int j =width-1;j>=0;j--){
+            for (int j = width - 1; j >= 0; j--) {
                 if (temp[j] == '1') {
                     rightMaxIndex[j] = Math.min(rightMaxIndex[j], boundary);
                 } else {
@@ -143,9 +190,12 @@ public class LeetCode85 {
 //                {'1', '0', '1', '1', '1'},
 //                {'1', '1', '1', '1', '1'},
 //                {'1', '0', '0', '1', '0'}
-                {'0','0','0','0'},
-                {'1','1','0','0'},
+                {'0', '0', '0', '0'},
+                {'1', '1', '0', '0'},
+
+
+//                {'1'}
         };
-        System.out.println(solution.maximalRectangle2(a));
+        System.out.println(solution.maximalRectangle(a));
     }
 }
