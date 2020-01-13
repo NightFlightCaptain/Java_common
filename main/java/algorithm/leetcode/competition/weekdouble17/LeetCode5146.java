@@ -1,7 +1,7 @@
 package algorithm.leetcode.competition.weekdouble17;
 
 /**
- * 【不同的循环子字符串】
+ * 【1316 不同的循环子字符串】
  * <p>
  * 给你一个字符串 text ，请你返回满足下述条件的 不同 非空子字符串的数目：这些子字符串可以写成某个字符串与其自身的串联。
  * <p>
