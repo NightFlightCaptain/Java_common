@@ -1,0 +1,67 @@
+package algorithm.leetcode;
+
+/**
+ * 【接雨水】
+ * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+ * <p>
+ * <p>
+ * <p>
+ * 上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 感谢 Marcos 贡献此图。
+ * <p>
+ * 示例:
+ * <p>
+ * 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
+ * 输出: 6
+ * <p>
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/trapping-rain-water
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *
+ * @author: 小栗旬
+ * @Date: 2019/12/3 20:59
+ */
+public class LeetCode42Again {
+    public int trap(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        while (left < right && height[left] < height[left + 1]) {
+            left++;
+        }
+        while (left < right && height[right] < height[right - 1]) {
+            right--;
+        }
+        int curIndex = left + 1;
+        int curSum = 0;
+        int trapSum = 0;
+        while (curIndex <= right) {
+            if (height[curIndex] < height[left]) {
+                curSum += height[curIndex];
+            } else {
+                trapSum += Math.min(height[curIndex], height[left]) * (curIndex - left - 1) - curSum;
+                left = curIndex;
+                curSum = 0;
+            }
+            curIndex++;
+        }
+        curIndex = right - 1;
+        curSum =0;
+        while (left <= curIndex) {
+            if (height[curIndex] < height[right]){
+                curSum +=height[curIndex];
+            }else {
+                trapSum += Math.min(height[curIndex],height[right]) *(right-curIndex-1)-curSum;
+                right = curIndex;
+                curSum =0;
+            }
+            curIndex--;
+        }
+        return trapSum;
+    }
+
+    public static void main(String[] args) {
+        LeetCode42Again solution = new LeetCode42Again();
+        System.out.println(solution.trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}));
+        System.out.println(solution.trap(new int[]{2,0,2}));
+    }
+
+}

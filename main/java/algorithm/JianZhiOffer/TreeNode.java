@@ -22,6 +22,11 @@ public class TreeNode {
 		System.out.println(node);
 	}
 
+	/**
+	 * 0代表空
+	 * @param vals
+	 * @return
+	 */
 	public static TreeNode getTreeNode(int[] vals) {
 		if (vals.length <= 0) {
 			return null;
