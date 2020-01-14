@@ -90,7 +90,7 @@ public class LeetCode208 {
         }
     }
 
-    class TreeNode {
+    private class TreeNode {
         TreeNode[] treeNodes = new TreeNode[27];
         char c;
         boolean isEnd = false;
