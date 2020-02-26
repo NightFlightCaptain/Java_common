@@ -18,7 +18,13 @@ public class DynamicProxy implements InvocationHandler {
 	public DynamicProxy(Object target) {
 		this.target= target;
 	}
-	
+
+	/**
+	 * 实际上，Proxy.newProxyInstance创造出一个新的Proxy0类，这个类继承自Proxy，内部有一个InvocationHandler。
+     * 这个新的Proxy0类的对象实现了给定接口，具体的实现方法就是通过InvocationHandler来执行
+	 * @param <T>
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getProxy(){
 		return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(),

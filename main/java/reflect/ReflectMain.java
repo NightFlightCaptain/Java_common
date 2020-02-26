@@ -15,7 +15,7 @@ public class ReflectMain {
 		ArrayList<Integer> arrayList = new ArrayList<>();
 		arrayList.add(99999);
 		arrayList.getClass().getMethod("add",Object.class).invoke(arrayList,"aa");
-
+		method1();
 
 		//		method2();
 	}
@@ -27,7 +27,7 @@ public class ReflectMain {
 		System.out.println(clazz.getComponentType());
 	}
 
-	private void method1() throws Exception {
+	private static void method1() throws Exception {
 		Class<Student> clazz = Student.class;
 		Constructor<Student> constructor = clazz.getDeclaredConstructor(String.class);
 		constructor.setAccessible(true);
