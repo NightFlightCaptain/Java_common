@@ -24,6 +24,10 @@ public class Teacher extends People{
 	protected void protectedMethod() throws IllegalStateException {
 		super.protectedMethod();
 
+	}
+
+	public void publicMethod(){
+		normalProtectedMethod();
 
 	}
 }

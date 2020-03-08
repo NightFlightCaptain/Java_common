@@ -1,6 +1,6 @@
 package code.extend;
 
-import code.extend.example.People;
+import code.extend.example2.Teacher;
 
 /**
  * @author wanhaoran
@@ -9,11 +9,8 @@ import code.extend.example.People;
 public class Main {
 
 	public static void main(String[] args) {
-		People people = new People();
-		People people1 = new People();
-		People people2 = new People();
+		Teacher teacher = new Teacher("li");
 
-		System.out.println((people));
 	}
 
 }

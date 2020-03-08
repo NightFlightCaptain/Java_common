@@ -19,6 +19,10 @@ public class People {
 
 	}
 
+	protected void normalProtectedMethod(){
+		System.out.println("normalProtectedMethod");
+	}
+
 	void defaultMethod(){
 
 	}

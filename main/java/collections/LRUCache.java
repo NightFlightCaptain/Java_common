@@ -5,9 +5,8 @@ import java.util.HashMap;
 /**
  * Author: 小栗旬
  * Date: 2019/4/23 19:23
- *
+ * <p>
  * 实现的LRU队列，没有使用LinkedHashMap
- *
  */
 public class LRUCache<K, V> {
     class Entry<K, V> {
@@ -59,7 +58,7 @@ public class LRUCache<K, V> {
     }
 
     public V get(K key) {
-        Entry<K,V> entry = getEntry(key);
+        Entry<K, V> entry = getEntry(key);
         if (entry == null) return null;
         moveToFirst(entry);
         return entry.value;
@@ -85,6 +84,7 @@ public class LRUCache<K, V> {
         entry.next = null;
     }
 
+
     private void moveToFirst(Entry entry) {
         if (entry == first) return;
         if (entry.pre != null) {
@@ -93,7 +93,7 @@ public class LRUCache<K, V> {
         if (entry.next != null) {
             entry.next.pre = entry.pre;
         }
-        if (first == null){
+        if (first == null) {
             first = last = entry;
             return;
         }
