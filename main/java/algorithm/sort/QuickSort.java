@@ -17,6 +17,23 @@ public class QuickSort {
         QuickSort(array, j + 1, right);
     }
 
+    private static int partition2(int[] array, int left, int right) {
+        int v = array[left];
+        while (left < right) {
+            while (left < right && (array[right] &1 ) == 0) {
+                right--;
+            }
+            array[left] = array[right];
+            while (left < right && (array[left] &1) == 1) {
+                left++;
+            }
+            array[right] = array[left];
+        }
+        array[left] = v;
+        return left;
+    }
+
+
     static private int partition(int[] array, int left, int right) {
         int v = array[left];
 
@@ -25,10 +42,10 @@ public class QuickSort {
                 right--;
             }
             array[left] = array[right];
-            while (left<right && array[left] <v){
+            while (left < right && array[left] < v) {
                 left++;
             }
-            array[right] =array[left];
+            array[right] = array[left];
         }
         array[left] = v;
         return left;
@@ -41,8 +58,8 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{-1, 2, 0};
-        QuickSort(nums, 0, 2);
+        int[] nums = new int[]{59, 20, 83, 13, 28, 14, 23, 17, 21 };
+        partition2(nums, 0, nums.length-1);
         System.out.println(Arrays.toString(nums));
     }
 
