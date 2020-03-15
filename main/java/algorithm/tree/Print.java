@@ -11,12 +11,21 @@ import java.util.Stack;
 public class Print {
     public static void main(String[] args) {
         TreeNode treeNode = TreeNode.getTreeNode(new int[]{1, 2, 3, 4, 5, 0, 6, 0, 0, 7, 8});
-        afterPrint2(treeNode);
-//        beforePrint(treeNode);
+//        afterPrint2(treeNode);
+        beforePrint(treeNode);
 //        treeNode = TreeNode.getTreeNode(new int[]{3,9,20,15,17,0,7});
 //        midPrint(treeNode);
     }
 
+    /**
+     * 重点是判断访问的节点是从左子树返回的还是从右子树返回的
+     * 判断节点不为空就入栈，然后访问左子树。
+     * 如果节点为空，那么就访问栈中的节点，如果该节点右节点不为空且为被访问过，
+     * 那么就说明该节点是第一次访问，将其作为新节点入栈。
+     * 如果右节点为空或者右节点已经被访问过，说明该节点的左子树和右子树都已经访问完了，可以打印该节点了。
+     *
+     * @param node
+     */
     private static void afterPrint2(TreeNode node) {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode last = null;
@@ -81,7 +90,7 @@ public class Print {
     private static void beforePrint(TreeNode node) {
         Stack<TreeNode> stack = new Stack<>();
         stack.push(node);
-        while (node != null) {
+        if (node != null) {
             while (!stack.isEmpty()) {
                 node = stack.pop();
                 System.out.println(node.val);
