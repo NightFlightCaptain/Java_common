@@ -1,4 +1,4 @@
-package mutil_thread.thread.AQS;
+package mutil_thread.AQS;
 
 import java.util.concurrent.*;
 

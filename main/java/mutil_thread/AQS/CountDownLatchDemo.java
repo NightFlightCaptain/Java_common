@@ -1,4 +1,4 @@
-package mutil_thread.thread.AQS;
+package mutil_thread.AQS;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,6 +16,7 @@ public class CountDownLatchDemo {
     private static void t(int a, int b, int c, int d) throws InterruptedException {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 2,
                 10, TimeUnit.SECONDS, new SynchronousQueue<>());
+
         AtomicInteger res1 = new AtomicInteger(0);
 
         CountDownLatch countDownLatch = new CountDownLatch(2);

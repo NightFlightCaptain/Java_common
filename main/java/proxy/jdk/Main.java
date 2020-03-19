@@ -1,7 +1,5 @@
 package proxy.jdk;
 
-import java.lang.reflect.Proxy;
-
 /**
  * @author wanhaoran
  * @date 2018年4月18日 下午4:14:36
@@ -22,14 +20,15 @@ public class Main {
 //        helloProxy.sayYourName("wan");
 //        helloProxy.tellMyName();
 
-        Hello hello = new HelloImpl();
-        Hello newHello = (Hello)Proxy.newProxyInstance(
-                hello.getClass().getClassLoader(),
-                hello.getClass().getInterfaces(),
-                new DynamicProxy2(hello)
-        );
-
-        System.out.println(newHello.toString());
+//        Hello hello = new HelloImpl();
+//        Hello newHello = (Hello) Proxy.newProxyInstance(
+//                hello.getClass().getClassLoader(),
+//                hello.getClass().getInterfaces(),
+//                new DynamicProxy2(hello)
+//        );
+//
+//        System.out.println(newHello.toString());
+        normalUse();
 
 
     }
