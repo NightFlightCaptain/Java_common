@@ -1,8 +1,10 @@
+package algorithm.realExam.alibaba;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main2 {
+public class AliTest2 {
 
 
     private int[][] getUniteSet(int[][] intervals) {

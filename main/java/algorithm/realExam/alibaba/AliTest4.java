@@ -1,3 +1,5 @@
+package algorithm.realExam.alibaba;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5,9 +7,9 @@ import java.util.Map;
  * @author: 小栗旬
  * @Date: 2020/3/16 20:21
  */
-public class Test2 {
+public class AliTest4 {
     public static void main(String[] args) {
-        Test2 test2 = new Test2();
+        AliTest4 test2 = new AliTest4();
         System.out.println(test2.wordPattern("abbac", "北京 杭州 杭州 北京 上海") == true);
         System.out.println(test2.wordPattern("aacbb", "北京 北京 上海 杭州 北京") == false);
         System.out.println(test2.wordPattern("baabcc", "北京 杭州 杭州 北京 上海 上海") == true);

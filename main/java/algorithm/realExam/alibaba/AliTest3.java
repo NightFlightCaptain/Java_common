@@ -1,10 +1,12 @@
+package algorithm.realExam.alibaba;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Test {
+public class AliTest3 {
     public static void main(String[] args) {
-        Test test = new Test();
+        AliTest3 test = new AliTest3();
         test.doSome();
     }
 

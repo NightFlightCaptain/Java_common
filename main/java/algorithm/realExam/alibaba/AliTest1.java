@@ -1,4 +1,6 @@
-public class Main {
+package algorithm.realExam.alibaba;
+
+public class AliTest1 {
 
     private int m;
     private int n;
