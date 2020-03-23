@@ -1,5 +1,10 @@
 package mutil_thread;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author: 小栗旬
  * @Date: 2020/3/9 21:23
@@ -7,31 +12,36 @@ package mutil_thread;
 public class SynchronizedDemo {
     Integer i = 3;
 
+    ExecutorService executorService = Executors.newFixedThreadPool(3);
     public void doSome(){
-        Thread thread = new Thread(() -> {
-            synchronized (i){
-                System.out.println("11");
+        Object object = new Object();
+        Future future= executorService.submit(()->{
+            synchronized (object){
                 try {
-                    Thread.sleep(1000);
+                    object.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }
-        });
-        thread.start();
+                while (!Thread.interrupted()){
 
-        i = 2;
-        Thread thread1 = new Thread(()->{
-            synchronized (i){
-                System.out.println("11");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+                System.out.println("stop 1");
             }
         });
-        thread1.start();
+
+
+        executorService.submit(()->{
+            synchronized (object){
+                System.out.println("thread2 start");
+                object.notify();
+            }
+        });
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        executorService.shutdown();
     }
 
     public static void main(String[] args) {
