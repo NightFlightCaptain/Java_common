@@ -59,7 +59,7 @@ public class FindNumsAppearOnce {
 	}
 
 	public static void main(String[] args) {
-		int[] input = {2, 4, 3, 6, 3, 2, 5, 5};
+		int[] input = {2, 5, 3, 6, 3, 2, 4, 5};
 		int[] num1 = new int[1];
 		int[] num2 = new int[1];
 		FindNumsAppearOnce solution = new FindNumsAppearOnce();

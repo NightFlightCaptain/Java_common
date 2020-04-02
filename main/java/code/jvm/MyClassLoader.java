@@ -50,9 +50,9 @@ public class MyClassLoader extends ClassLoader {
         Class<?> myClass = myClassLoader.loadClass("C:\\Users\\wanhaoran\\Desktop\\People.class", "code.extend.example.People");
         System.out.println(myClass.getClassLoader());
 
-        Class<?> sysClass = myClassLoader.loadClass(null,"java.lang.Thread");
+        Class<?> sysClass = myClassLoader.loadClass("java.lang.Thread");
+        System.out.println("sysClass:"+sysClass.getClassLoader());
         System.out.println(sysClass.getClassLoader());
-
         System.out.println(myClass.getPackage());
 
     }

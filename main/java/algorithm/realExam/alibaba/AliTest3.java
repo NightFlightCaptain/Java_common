@@ -14,23 +14,26 @@ public class AliTest3 {
 
     private void doSome() {
 
+
         ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         executorService.submit(() -> {
-            while (atomicInteger.get() <= 100) {
-                synchronized (atomicInteger) {
-                    if ((atomicInteger.get() & 1) == 0) {
-                        System.out.println("Thread B:" + atomicInteger.getAndIncrement());
-                    }
+            int num = 2;
+            while (num <= 100) {
+                if (atomicInteger.get() == 0) {
+                    System.out.println("Thread B:" + num);
+                    num += 2;
+                    atomicInteger.set(1);
                 }
             }
         });
         executorService.submit(() -> {
-            while (atomicInteger.get() < 100) {
-                synchronized (atomicInteger) {
-                    if ((atomicInteger.get() & 1) == 1) {
-                        System.out.println("Thread A:" + atomicInteger.getAndIncrement());
-                    }
+            int num = 1;
+            while (num < 100) {
+                if (atomicInteger.get() == 1) {
+                    System.out.println("Thread A:" + num);
+                    num += 2;
+                    atomicInteger.set(0);
                 }
             }
         });
