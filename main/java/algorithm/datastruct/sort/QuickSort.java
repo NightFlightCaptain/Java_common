@@ -46,11 +46,11 @@ public class QuickSort {
         int v = array[left];
 
         while (left < right) {
-            while (left < right && array[right] > v) {
+            while (left < right && array[right] >= v) {
                 right--;
             }
             array[left] = array[right];
-            while (left < right && array[left] < v) {
+            while (left < right && array[left] <= v) {
                 left++;
             }
             array[right] = array[left];
@@ -67,7 +67,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums = new int[]{59, 20, 83, 13, 28, 14, 23, 17, 21};
-        nums = new int[]{83, 59, 28, 23, 21, 20, 17, 14, 13};
+        nums = new int[]{83,83, 59, 28, 23, 21, 20, 17, 14, 13};
         QuickSort(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
